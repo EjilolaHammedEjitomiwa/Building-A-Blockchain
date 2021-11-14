@@ -33,7 +33,7 @@ class Blockchain:
                 check_proof = True
             else: 
                 new_proof += 1
-            return new_proof
+        return new_proof
                 
         
     def hash(self,block):
@@ -91,9 +91,23 @@ def get_chain():
                 'length':len(blockchain.chain)}
     return jsonify(response), 200
 
+@app.route('/is_chain_valid',methods = ['GET'])
+
+def is_chain_valid():
+    
+    if blockchain.is_chain_valid(blockchain.chain): 
+        response = {'message' : 'The blockchain is valid'}
+    else:
+        response = {'message' : 'The Blockchain is not valid'}
+     
+    return jsonify(response), 200   
+    
+        
+
 # running the app
 app.run(host = '0.0.0.0', port = 5000)
 
+# 4:50
 
 
 
